@@ -1,0 +1,28 @@
+{
+    "manifest_version": 3,
+    "name": "Clipy",
+    "version": "1.0.1",
+    "description": "Clipy makes it easy to keep everything you want to copy and paste all in one extension.",
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "My Extension"
+    },
+    "background": {
+        "service_worker": "eventPage.js"
+    },
+    "permissions": [
+        "contextMenus",
+        "storage"
+    ],
+    "icons": {
+        "16": "clipy128.png",
+        "48": "clipy128.png",
+        "128": "clipy128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["popup.js"]
+        }
+    ]
+}

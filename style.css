@@ -1,0 +1,177 @@
+html {
+    margin: 0;
+}
+
+body {
+    font-family: sans-serif;
+    width: 350px;
+    background-color: #292825;
+    color: white;
+    /* padding: 10px; */
+    margin: 0;
+    border: 1px solid black;
+    font-family: sans-serif;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: end;
+}
+
+ul {
+    /* display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: start; */
+    background-color: #36342e;
+    min-height: 50px;
+    max-height: 150px;
+    padding: 0;
+    overflow: scroll;
+}
+
+li {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: start;
+    align-items: center;
+    text-decoration: none;
+    list-style-type: none;
+    padding: 10px;
+    /* width: 350px; */
+    font-size: x-large;
+}
+
+li:hover {
+    background: #49463e;
+    transition: 500ms;
+}
+
+.trash:hover {
+    color: red;
+    transition: 500ms;
+}
+
+.copyicon:hover {
+    color: grey;
+    transition: 500ms;
+}
+
+.active {
+    background-color: rgb(61, 61, 236);
+    /* border: 5px solid green; */
+    /* mix-blend-mode: overlay; */
+    transition: ease-in 200ms;
+}
+
+.active:hover {
+    background-color: rgb(61, 61, 236);
+    /* border: 5px solid green; */
+    /* mix-blend-mode: overlay; */
+    /* transition: ease-in 200ms; */
+}
+
+p {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+h1 {
+    margin-left: 1rem;
+    margin-right: 0.25rem;
+    font-size: xx-large;
+    letter-spacing: 1px;
+}
+
+h4 {
+    color: #dad5d5;
+}
+
+span {
+    margin-left: 1rem;
+}
+
+i {
+    font-size: 1rem;
+    margin-right: 10px;
+}
+
+input {
+    border: 0px solid #36342e;
+    background-color: #36342e;
+    color: white;
+    padding: 5px;
+    font-size: large;
+    font-weight: bolder;
+    margin-left: 3px;
+}
+
+button {
+    background-color: #292825;
+    /* color: white;
+    border: 2px white solid; */
+    border-radius: 10px;
+    padding: 5px;
+    margin-left: 3px;
+}
+
+#add {
+    color: green;
+    border: 2px green solid;
+}
+
+#add:hover {
+    background-color: green;
+    border-color: green;
+    color: white;
+    /* padding: 7px; */
+    /* letter-spacing: 1px; */
+    transition: 500ms;
+}
+
+#clear {
+    color: red;
+    border: 2px solid red;
+}
+
+#clear:hover {
+    background-color: red;
+    border-color: red;
+    color: white;
+    /* padding: 7px; */
+    /* letter-spacing: 1px; */
+    transition: 500ms;
+}
+
+.keonlink {
+    color: white;
+    text-decoration: none;
+}
+
+.keonlink:hover {
+    color: #efefef;
+    text-decoration: underline;
+}
+
+::-webkit-scrollbar {
+    height: 0px;
+    width: 10px;
+    background-color: #36342e;
+}
+
+::-webkit-scrollbar-thumb {
+    width: 10px;
+    background-color: rgb(100, 98, 98);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(78, 77, 77);
+}
