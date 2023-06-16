@@ -30,13 +30,13 @@ ul {
     min-height: 50px;
     max-height: 150px;
     padding: 0;
-    overflow: scroll;
+    overflow-x: scroll;
 }
 
 li {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: start;
     align-items: center;
     text-decoration: none;
@@ -44,6 +44,7 @@ li {
     padding: 10px;
     /* width: 350px; */
     font-size: x-large;
+    overflow-x: scroll;
 }
 
 li:hover {
@@ -96,6 +97,7 @@ h4 {
 
 span {
     margin-left: 1rem;
+    overflow-x: scroll;
 }
 
 i {

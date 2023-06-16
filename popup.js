@@ -62,7 +62,7 @@ async function startup() {
     });
 }
 
-listElm.onload = startup();
+startup();
 
 // Adds item to list and local storage and on the DOM
 addBtn.addEventListener("click", async(ev) => {
