@@ -14,4 +14,5 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
             chrome.storage.sync.set({data: items.data});
         });
     }
-})
+});
+

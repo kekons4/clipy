@@ -67,15 +67,19 @@ startup();
 // Adds item to list and local storage and on the DOM
 addBtn.addEventListener("click", async(ev) => {
     const text = inputElm.value;
-    // Goes through and adds the next entry item to chrome storage
-    await chrome.storage.sync.get("data", function(items) {
-        items.data.push(text);
-        chrome.storage.sync.set({'data': items.data});
-        generateListItem({text: text, index: items.data.length});
-    });
 
-    location.reload();
-    inputElm.value = '';
+    // As long as the user doesnt enter nothing
+    if(text !== "") {
+        // Goes through and adds the next entry item to chrome storage
+        await chrome.storage.sync.get("data", function(items) {
+            items.data.push(text);
+            chrome.storage.sync.set({'data': items.data});
+            generateListItem({text: text, index: items.data.length});
+        });
+
+        location.reload();
+        inputElm.value = '';
+    }
 });
 
 // Clears the local storage and dataArray
