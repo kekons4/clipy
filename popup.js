@@ -3,6 +3,7 @@ const clearElem = document.getElementById("clear");
 const listElm = document.getElementById("copylist");
 const inputElm = document.getElementById("item");
 
+// Generates the list items on to DOM
 function generateListItem(copyData) {
     const msg = document.createElement("li");
     msg.onclick = function(e) {
