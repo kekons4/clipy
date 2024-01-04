@@ -20,6 +20,12 @@ body {
     align-items: end;
 }
 
+div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
 ul {
     /* display: flex;
     flex-direction: column;
