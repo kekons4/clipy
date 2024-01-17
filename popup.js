@@ -3,6 +3,16 @@ const clearElem = document.getElementById("clear");
 const listElm = document.getElementById("copylist");
 const inputElm = document.getElementById("item");
 
+const queryOpts = { name: 'clipboard-read', allowWithoutGesture: false };
+const permissionStatus = await navigator.permissions.query(queryOpts);
+// Will be 'granted', 'denied' or 'prompt':
+console.log(permissionStatus.state);
+
+// Listen for changes to the permission state
+permissionStatus.onchange = () => {
+  console.log(permissionStatus.state);
+};
+
 // Generates the list items on to DOM
 function generateListItem(copyData) {
     const msg = document.createElement("li");
@@ -29,7 +39,7 @@ function generateListItem(copyData) {
 
                 await navigator.clipboard.write([clipboardItem]);
             } catch (err) {
-                console.log(err.message);
+                console.log(err);
             }
         }
 
