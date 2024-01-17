@@ -6,37 +6,50 @@ const inputElm = document.getElementById("item");
 // Generates the list items on to DOM
 function generateListItem(copyData) {
     const msg = document.createElement("li");
-    msg.onclick = function(e) {
-        navigator.clipboard.writeText(e.target.innerText);
-    }
 
-    const i = document.createElement("i");
-    i.classList = "fas fa-copy copyicon";
+    if(copyData.text.includes("img::")) {
+        const src = copyData.text.split('img::')[1];
+        console.log(src);
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = src;
+        img.width = "100";
+        img.height = "100";
+        msg.append(img);
 
-    msg.append(i);
-
-    const trash = document.createElement("i");
-    trash.setAttribute("data-index", copyData.index);
-    trash.classList = "fas fa-trash trash";
-    trash.onclick = function(e) {
-        const index = e.target.getAttribute("data-index");
-        chrome.storage.sync.get("data", async function(items) {
-            const newItems = [];
-            for(let i = 0; i < items.data.length; i++) {
-                if(i != index) {
-                    newItems.push(items.data[i]);
+    } else {
+        msg.onclick = function(e) {
+            navigator.clipboard.writeText(e.target.innerText);
+        }
+    
+        const i = document.createElement("i");
+        i.classList = "fas fa-copy copyicon";
+    
+        msg.append(i);
+    
+        const trash = document.createElement("i");
+        trash.setAttribute("data-index", copyData.index);
+        trash.classList = "fas fa-trash trash";
+        trash.onclick = function(e) {
+            const index = e.target.getAttribute("data-index");
+            chrome.storage.sync.get("data", async function(items) {
+                const newItems = [];
+                for(let i = 0; i < items.data.length; i++) {
+                    if(i != index) {
+                        newItems.push(items.data[i]);
+                    }
                 }
-            }
-            await chrome.storage.sync.set({data: newItems});
-        });
-        location.reload();
+                await chrome.storage.sync.set({data: newItems});
+            });
+            location.reload();
+        }
+        msg.append(trash);
+    
+        const span = document.createElement("span");
+        span.innerText = copyData.text;
+    
+        msg.append(span);
     }
-    msg.append(trash);
-
-    const span = document.createElement("span");
-    span.innerText = copyData.text;
-
-    msg.append(span);
 
     listElm.append(msg);
 }
