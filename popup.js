@@ -17,6 +17,22 @@ function generateListItem(copyData) {
         img.width = "100";
         img.height = "100";
 
+        msg.onclick = async function(e) {
+            try {
+                const [jpegBlob] = await Promise.all([
+                    fetch(src).then((response) => response.blob())
+                ]);
+
+                const clipboardItem = new ClipboardItem({
+                    [`web ${jpegBlob.type}`]: jpegBlob,
+                });
+
+                await navigator.clipboard.write([clipboardItem]);
+            } catch (err) {
+                console.log(err.message);
+            }
+        }
+
         const i = document.createElement("i");
         i.classList = "fas fa-copy copyicon";
     
