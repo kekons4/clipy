@@ -3,15 +3,15 @@ const clearElem = document.getElementById("clear");
 const listElm = document.getElementById("copylist");
 const inputElm = document.getElementById("item");
 
-const queryOpts = { name: 'clipboard-read', allowWithoutGesture: false };
-const permissionStatus = await navigator.permissions.query(queryOpts);
-// Will be 'granted', 'denied' or 'prompt':
-console.log(permissionStatus.state);
+// Check for Geolocation API permissions
+navigator.permissions.query({name:'clipboard-read'})
+    .then(function(permissionStatus) {
+    console.log('clipboard-read permission state is ', permissionStatus.state);
 
-// Listen for changes to the permission state
-permissionStatus.onchange = () => {
-  console.log(permissionStatus.state);
-};
+    permissionStatus.onchange = function() {
+        console.log('clipboard-read permission state has changed to ', this.state);
+    };
+    });
 
 // Generates the list items on to DOM
 function generateListItem(copyData) {

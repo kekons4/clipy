@@ -12,7 +12,9 @@
     },
     "permissions": [
         "contextMenus",
-        "storage"
+        "storage",
+        "clipboardRead",
+        "clipboardWrite"
     ],
     "icons": {
         "16": "clipy128.png",
