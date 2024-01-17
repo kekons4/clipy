@@ -24,7 +24,7 @@ function generateListItem(copyData) {
                 ]);
 
                 const clipboardItem = new ClipboardItem({
-                    [`web ${jpegBlob.type}`]: jpegBlob,
+                    [jpegBlob.type]: jpegBlob,
                 });
 
                 await navigator.clipboard.write([clipboardItem]);
