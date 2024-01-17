@@ -9,7 +9,7 @@ chrome.contextMenus.create(contextMenuItem);
 let pictureMenuItem = {
     "id": "imageItem",
     "title": "Copy Image Data",
-    "contexts": ["selection"]
+    "contexts": ["image"]
 };
 chrome.contextMenus.create(pictureMenuItem);
 
@@ -22,7 +22,7 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
         });
     }
 
-    if(clickData.menuItemId === "imageItem" && clickData.srcUrl) {
+    if(clickData.menuItemId === "imageItem" && clickData.mediaType === "image") {
         console.log(clickData.srcUrl);
     }
 });
