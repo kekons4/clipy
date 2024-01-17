@@ -6,6 +6,13 @@ let contextMenuItem = {
 };
 chrome.contextMenus.create(contextMenuItem);
 
+let pictureMenuItem = {
+    "id": "imageItem",
+    "title": "Copy Image Data",
+    "contexts": ["selection"]
+};
+chrome.contextMenus.create(pictureMenuItem);
+
 // When user clicks the Clipy contextMenu item it add the highlighted text to chrome storage
 chrome.contextMenus.onClicked.addListener(function(clickData){
     if(clickData.menuItemId === "copyItem" && clickData.selectionText) {
@@ -13,6 +20,10 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
             items.data.push(clickData.selectionText);
             chrome.storage.sync.set({data: items.data});
         });
+    }
+
+    if(clickData.menuItemId === "imageItem" && clickData.srcUrl) {
+        console.log(clickData.srcUrl);
     }
 });
 
