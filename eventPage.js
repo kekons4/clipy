@@ -24,6 +24,11 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
 
     if(clickData.menuItemId === "imageItem" && clickData.mediaType === "image") {
         console.log(clickData.srcUrl);
+        const imgSrcItem = `img::${clickData.srcUrl}`;
+        chrome.storage.sync.get("data", function(items) {
+            items.data.push(imgSrcItem);
+            chrome.storage.sync.set({data: items.data});
+        });
     }
 });
 
