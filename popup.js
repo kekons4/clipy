@@ -28,7 +28,7 @@ function generateListItem(copyData) {
     // Checks to see if text is and image or not
     if(copyData.text.includes("img::")) {
         const src = copyData.text.split('img::')[1];
-        console.log(src);
+        // console.log(src);
         const img = document.createElement('img');
         img.src = src;
         img.alt = src;
