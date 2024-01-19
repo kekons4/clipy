@@ -3,15 +3,23 @@ const clearElem = document.getElementById("clear");
 const listElm = document.getElementById("copylist");
 const inputElm = document.getElementById("item");
 
-// Check for Geolocation API permissions
-navigator.permissions.query({name:'clipboard-read'})
-    .then(function(permissionStatus) {
-    console.log('clipboard-read permission state is ', permissionStatus.state);
+// For downloading image data anc converting it into png
+const image = new Image;
+const c = document.createElement('canvas');
+const ctx = c.getContext('2d');
 
-    permissionStatus.onchange = function() {
-        console.log('clipboard-read permission state has changed to ', this.state);
-    };
-    });
+// Converts downloaded image blob into png
+function setCanvasImage(path,func){
+    image.onload = function(){
+        c.width = this.naturalWidth;
+        c.height = this.naturalHeight;
+        ctx.drawImage(this,0,0);
+        c.toBlob(blob=>{
+            func(blob)
+        },'image/png');
+    }
+    image.src = path;
+}
 
 // Generates the list items on to DOM
 function generateListItem(copyData) {
@@ -29,15 +37,16 @@ function generateListItem(copyData) {
 
         msg.onclick = async function(e) {
             try {
-                const [jpegBlob] = await Promise.all([
-                    fetch(src).then((response) => response.blob())
-                ]);
-
-                const clipboardItem = new ClipboardItem({
-                    [`web ${jpegBlob.type}`]: jpegBlob,
+                setCanvasImage(src,(imgBlob)=>{
+                    console.log('adding image to clipboard')
+                    navigator.clipboard.write(
+                        [
+                            new ClipboardItem({'image/png': imgBlob})
+                        ]
+                    )
+                    // .then(e=>{console.log('Image copied to clipboard')})
+                    // .catch(e=>{console.log(e)})
                 });
-
-                await navigator.clipboard.write([clipboardItem]);
             } catch (err) {
                 console.log(err);
             }

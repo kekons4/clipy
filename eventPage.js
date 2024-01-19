@@ -21,9 +21,8 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
             chrome.storage.sync.set({data: items.data});
         });
     }
-
+    // Adding image src to chrome storage
     if(clickData.menuItemId === "imageItem" && clickData.mediaType === "image") {
-        console.log(clickData.srcUrl);
         const imgSrcItem = `img::${clickData.srcUrl}`;
         chrome.storage.sync.get("data", function(items) {
             items.data.push(imgSrcItem);
