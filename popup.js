@@ -52,10 +52,16 @@ function generateListItem(copyData) {
             }
         }
 
+        // create imagepath link to original image
         const i = document.createElement("i");
-        i.classList = "fas fa-copy copyicon";
+        i.classList = "fas fa-external-link-alt imagepath";
+        const imageLink = document.createElement("a");
+        imageLink.href = src;
+        imageLink.target = "_blank";
+        imageLink.append(i);
+
     
-        msg.append(i);
+        msg.append(imageLink);
     
         const trash = document.createElement("i");
         trash.setAttribute("data-index", copyData.index);

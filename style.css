@@ -68,6 +68,16 @@ li:hover {
     transition: 500ms;
 }
 
+.imagepath {
+    color: white;
+}
+
+.imagepath:hover {
+    color: green;
+    background-color: none;
+    transition: 200ms;
+}
+
 .active {
     background-color: rgb(61, 61, 236);
     /* border: 5px solid green; */
