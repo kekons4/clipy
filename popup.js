@@ -88,11 +88,6 @@ function generateListItem(copyData) {
             navigator.clipboard.writeText(e.target.innerText);
         }
     
-        const i = document.createElement("i");
-        i.classList = "fas fa-copy copyicon";
-    
-        msg.append(i);
-    
         const trash = document.createElement("i");
         trash.setAttribute("data-index", copyData.index);
         trash.classList = "fas fa-trash trash";
