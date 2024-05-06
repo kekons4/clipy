@@ -5,7 +5,7 @@ html {
 body {
     font-family: sans-serif;
     width: 350px;
-    background-color: #292825;
+    background-color: #22211e;
     color: white;
     /* padding: 10px; */
     margin: 0;
@@ -90,6 +90,16 @@ li:hover {
     /* border: 5px solid green; */
     /* mix-blend-mode: overlay; */
     /* transition: ease-in 200ms; */
+}
+
+.title-head {
+    text-decoration: none;
+    color: white;
+}
+
+.title-head :hover {
+    color: #cccaca;
+    cursor: pointer;
 }
 
 p {
