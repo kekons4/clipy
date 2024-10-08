@@ -1,7 +1,7 @@
 {
     "manifest_version": 3,
     "name": "Clipy",
-    "version": "1.5.5",
+    "version": "1.5.6",
     "description": "Clipy makes it easy to keep everything you want to copy and paste all in one extension.",
     "action": {
         "default_popup": "popup.html",
