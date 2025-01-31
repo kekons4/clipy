@@ -178,12 +178,12 @@ button {
     transition: 500ms;
 }
 
-.keonlink {
+.devlink {
     color: white;
     text-decoration: none;
 }
 
-.keonlink:hover {
+.devlink:hover {
     color: #efefef;
     text-decoration: underline;
 }
