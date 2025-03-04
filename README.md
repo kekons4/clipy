@@ -12,4 +12,3 @@ Clipy makes it easy to keep everything you want to copy and paste all in one ext
 ## Follow Me
  - Twitter - @kekons4
  - Github - https://github.com/kekons4
- - Instagram - @kekons4
