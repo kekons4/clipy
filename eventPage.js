@@ -31,3 +31,32 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
     }
 });
 
+chrome.runtime.onInstalled.addListener(() => {
+    chrome.contextMenus.create({
+      id: "open-sidepanel",
+      title: "Open Side Panel",
+      contexts: ["all"]
+    });
+  });
+  
+  chrome.contextMenus.onClicked.addListener((info, tab) => {
+    if (info.menuItemId === "open-sidepanel") {
+      chrome.sidePanel.setOptions({
+        tabId: tab.id,
+        path: 'sidepanel.html',
+        enabled: true
+      });
+      chrome.sidePanel.open({ tabId: tab.id });
+    }
+  });
+  
+  chrome.action.onClicked.addListener((tab) => {
+    chrome.sidePanel.setOptions({
+      tabId: tab.id,
+      path: 'sidepanel.html',
+      enabled: true
+    });
+    chrome.sidePanel.open({ tabId: tab.id });
+  });
+  
+
