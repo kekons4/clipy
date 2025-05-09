@@ -5,10 +5,14 @@ html {
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: stretch;
     font-family: sans-serif;
     background-color: #22211e;
     color: white;
-    height: 100%;
+    height: 99%;
     /* padding: 10px; */
     margin: 0;
     border: 1px solid black;
@@ -31,7 +35,7 @@ div {
 .wrapper {
     display: flex;
     flex-direction: column;
-    height: 78.5%;
+    /* height: 78.5%; */
 }
 
 ul {
@@ -42,11 +46,11 @@ ul {
     justify-content: start;
     align-items: start; */
     background-color: #2e2c28;
-    /* max-height: 100vh; */
+    max-height: 75vh;
     /* height: 600px; */
     padding: 0;
     overflow-x: scroll;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 li {
