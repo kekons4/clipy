@@ -31,13 +31,13 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
     }
 });
 
-chrome.runtime.onInstalled.addListener(() => {
-    chrome.contextMenus.create({
-      id: "open-sidepanel",
-      title: "Open Side Panel",
-      contexts: ["all"]
-    });
-  });
+// chrome.runtime.onInstalled.addListener(() => {
+//     chrome.contextMenus.create({
+//       id: "open-sidepanel",
+//       title: "Open Side Panel",
+//       contexts: ["all"]
+//     });
+//   });
   
   chrome.contextMenus.onClicked.addListener((info, tab) => {
     if (info.menuItemId === "open-sidepanel") {

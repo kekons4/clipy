@@ -8,6 +8,9 @@ const image = new Image;
 const c = document.createElement('canvas');
 const ctx = c.getContext('2d');
 
+// Current size of list array
+let currentSize = 0;
+
 // Converts downloaded image blob into png
 function setCanvasImage(path,func){
     image.onload = function(){
@@ -126,6 +129,7 @@ async function startup() {
                 msg.innerText = "Add your first item";
                 listElm.append(msg);
             } else {
+                currentSize = items.data.length;
                 const listObj = {};
                 for(let i = 0; i < items.data.length; i++) {
                     listObj.text = items.data[i];
@@ -136,8 +140,18 @@ async function startup() {
         }
     });
 }
+startup()
 
-startup();
+setInterval(async () => {
+  const items = await chrome.storage.sync.get("data"); 
+  console.log(items);
+  if(items.data.length > currentSize) {
+    while(listElm.firstChild){
+       listElm.removeChild(listElm.firstChild);
+    }
+    startup();
+  }
+}, 100);
 
 // Adds item to list and local storage and on the DOM
 addBtn.addEventListener("click", async(ev) => {
