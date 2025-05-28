@@ -59,4 +59,28 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
     chrome.sidePanel.open({ tabId: tab.id });
   });
   
+  chrome.commands.onCommand.addListener((command) => {
+    console.log(`Command "${command}" triggered`);
+    if(command === "copy-text-to-clipy") {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        chrome.scripting.executeScript({
+          target: {tabId: tabs[0].id },
+          func: async() => {
+            const selectedText = window.getSelection().toString();
+            if(selectedText) {
+              await navigator.clipboard.writeText(selectedText);
+              chrome.storage.sync.get("data", function(items) {
+                items.data.push(selectedText);
+                chrome.storage.sync.set({data: items.data});
+              });
+                // .then(() => console.log('Successfully copied Selected text'))
+                // .catch(err => console.error('Failed to write to clipboard'));
+            } else {
+              console.log('No selected text');
+            }
+          }
+        });
+      });
+    }
+  });
 

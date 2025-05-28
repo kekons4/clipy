@@ -10,13 +10,13 @@
     "side_panel": {
         "default_path": "sidepanel.html"
     },
-    "background": {
-        "service_worker": "eventPage.js"
-    },
     "permissions": [
         "contextMenus",
         "storage",
-        "sidePanel"
+        "sidePanel",
+        "clipboardWrite",
+        "scripting",
+        "activeTab"
     ],
     "icons": {
         "16": "clipy128.png",
@@ -28,5 +28,17 @@
             "matches": ["<all_urls>"],
             "js": ["popup.js"]
         }
-    ]
+    ],
+    "commands": {
+        "copy-text-to-clipy": {
+            "suggested_key": {
+                "default": "Ctrl+C",
+                "mac": "Command+C"
+            },
+            "description": "When user does Crtl+C it will automatically copy to Clipy too"
+        }
+    },
+    "background": {
+        "service_worker": "eventPage.js"
+    }
 }
