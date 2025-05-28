@@ -165,6 +165,7 @@ button {
     background-color: green;
     border-color: green;
     color: white;
+    cursor: pointer;
     /* padding: 7px; */
     /* letter-spacing: 1px; */
     transition: 500ms;
@@ -179,6 +180,7 @@ button {
     background-color: red;
     border-color: red;
     color: white;
+    cursor: pointer;
     /* padding: 7px; */
     /* letter-spacing: 1px; */
     transition: 500ms;
