@@ -63,10 +63,15 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
     console.log(`Command "${command}" triggered`);
     if(command === "copy-text-to-clipy") {
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        
+        const tab = tabs[0];
+        const url = tab.url;
+        if (!url.startsWith("http")) return;
+
         chrome.scripting.executeScript({
-          target: {tabId: tabs[0].id },
+          target: {tabId: tab.id },
           func: async() => {
-            const selectedText = window.getSelection().toString();
+            const selectedText = window.getSelection().toString().trim();
             if(selectedText) {
               await navigator.clipboard.writeText(selectedText);
               chrome.storage.sync.get("data", function(items) {
@@ -77,6 +82,19 @@ chrome.contextMenus.onClicked.addListener(function(clickData){
                 // .catch(err => console.error('Failed to write to clipboard'));
             } else {
               console.log('No selected text');
+              navigator.clipboard.readText()
+                .then(text => {
+                  const cleaned = text
+                    .replace(/(Copy|Edit|\bjs\b)/gi, '')  // Remove UI artifacts
+                    .trim();
+                  console.log("Cleaned clipboard content:", cleaned);
+
+                  chrome.storage.sync.get("data", function(items) {
+                    items.data.push(cleaned);
+                    chrome.storage.sync.set({data: items.data});
+                  });
+                })
+                .catch(err => console.error("Clipboard read failed:", err));
             }
           }
         });

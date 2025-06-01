@@ -15,6 +15,7 @@
         "storage",
         "sidePanel",
         "clipboardWrite",
+        "clipboardRead",
         "scripting",
         "activeTab"
     ],
@@ -32,8 +33,8 @@
     "commands": {
         "copy-text-to-clipy": {
             "suggested_key": {
-                "default": "Ctrl+C",
-                "mac": "Command+C"
+                "default": "Alt+C",
+                "mac": "Alt+C"
             },
             "description": "When user does Crtl+C it will automatically copy to Clipy too"
         }
