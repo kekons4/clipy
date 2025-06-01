@@ -144,7 +144,7 @@ startup()
 
 setInterval(async () => {
   const items = await chrome.storage.sync.get("data"); 
-  console.log(items);
+//   console.log(items);
   if(items.data.length > currentSize) {
     while(listElm.firstChild){
        listElm.removeChild(listElm.firstChild);
