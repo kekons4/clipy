@@ -127,7 +127,8 @@ async function startup() {
             if(items.data.length === 0) {
                 const msg = document.createElement("li");
                 msg.innerText = "Add your first item";
-                setTimeout(() => listElm.append(msg), 100);
+                console.log(listElm);
+                listElm.append(msg);
             } else {
                 currentSize = items.data.length;
                 const listObj = {};
@@ -140,60 +141,64 @@ async function startup() {
         }
     });
 }
-startup()
 
-setInterval(async () => {
-  const items = await chrome.storage.sync.get("data"); 
-//   console.log(items);
-  if(items.data.length > currentSize) {
-    while(listElm.firstChild){
-       listElm.removeChild(listElm.firstChild);
-    }
-    startup();
-  }
-}, 100);
+if (listElm !== null) {
+    startup(); // Only startup if popup is visible on screen
 
-// Adds item to list and local storage and on the DOM
-addBtn.addEventListener("click", async(ev) => {
-    const text = inputElm.value;
-
-    // As long as the user doesnt enter nothing
-    if(text !== "") {
-        // Goes through and adds the next entry item to chrome storage
-        await chrome.storage.sync.get("data", function(items) {
-            items.data.push(text);
-            chrome.storage.sync.set({'data': items.data});
-            generateListItem({text: text, index: items.data.length});
-        });
-
-        location.reload();
-        inputElm.value = '';
-    }
-});
-
-// Clears the local storage and dataArray
-clearElem.addEventListener("click", async(ev) => {
-   await chrome.storage.sync.set({"data": []});
-
-   while(listElm.firstChild){
-       listElm.removeChild(listElm.firstChild);
-   }
-});
-
-// Sets the clicked item to be colored blue
-listElm.addEventListener("click", (e) => {
-    for(let i = 0; i < listElm.children.length; i++) {
-        listElm.children[i].classList = "";
-    }
-
-    if(e.srcElement.nodeName === "LI") {
-        e.target.classList = "active";
-    } else if(e.srcElement.nodeName === "SPAN"){
-        e.target.parentNode.classList = "active";
-    } else if(e.srcElement.nodeName === "I") {
-        if(e.target.classList === "fas fa-trash trash") {
-
+    setInterval(async () => {
+    const items = await chrome.storage.sync.get("data"); 
+    //   console.log(items);
+    if(items.data.length > currentSize) {
+        while(listElm.firstChild){
+        listElm.removeChild(listElm.firstChild);
         }
-        e.target.parentNode.classList = "active";
+        startup();
     }
-});
+    }, 100);
+}
+
+if(addBtn !== null) {
+    // Adds item to list and local storage and on the DOM
+    addBtn.addEventListener("click", async(ev) => {
+        const text = inputElm.value;
+
+        // As long as the user doesnt enter nothing
+        if(text !== "") {
+            // Goes through and adds the next entry item to chrome storage
+            await chrome.storage.sync.get("data", function(items) {
+                items.data.push(text);
+                chrome.storage.sync.set({'data': items.data});
+                generateListItem({text: text, index: items.data.length});
+            });
+
+            location.reload();
+            inputElm.value = '';
+        }
+    });
+    // Clears the local storage and dataArray
+    clearElem.addEventListener("click", async(ev) => {
+    await chrome.storage.sync.set({"data": []});
+
+    while(listElm.firstChild){
+        listElm.removeChild(listElm.firstChild);
+    }
+    });
+
+    // Sets the clicked item to be colored blue
+    listElm.addEventListener("click", (e) => {
+        for(let i = 0; i < listElm.children.length; i++) {
+            listElm.children[i].classList = "";
+        }
+
+        if(e.srcElement.nodeName === "LI") {
+            e.target.classList = "active";
+        } else if(e.srcElement.nodeName === "SPAN"){
+            e.target.parentNode.classList = "active";
+        } else if(e.srcElement.nodeName === "I") {
+            if(e.target.classList === "fas fa-trash trash") {
+
+            }
+            e.target.parentNode.classList = "active";
+        }
+    });
+}
