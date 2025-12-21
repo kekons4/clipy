@@ -1,3 +1,7 @@
 build/
-clipy.zip
+node_modules/
 .DS_Store
+.env
+env.json
+log.json
+clipy.zip

@@ -127,7 +127,7 @@ async function startup() {
             if(items.data.length === 0) {
                 const msg = document.createElement("li");
                 msg.innerText = "Add your first item";
-                listElm.append(msg);
+                setTimeout(() => listElm.append(msg), 100);
             } else {
                 currentSize = items.data.length;
                 const listObj = {};
